@@ -1,0 +1,22 @@
+Q1.Write a JavaScript to display message ‘Exams are near, have you started preparing for?’ (usealert
+box ) and Accept any two numbers from user and display addition of two number .(Use Prompt and
+confirm box)
+
+JAVASCRIPT-:
+
+// Display a message using an alert box
+alert("Exams are near, have you started preparing for?");
+
+// Ask user for two numbers using prompt boxes
+var num1 = prompt("Enter the first number:");
+var num2 = prompt("Enter the second number:");
+
+// Convert the user input to numbers
+num1 = Number(num1);
+num2 = Number(num2);
+
+// Calculate the sum of the two numbers
+var sum = num1 + num2;
+
+// Display the sum using a confirm box
+confirm("The sum of " + num1 + " and " + num2 + " is " + sum);

@@ -1,0 +1,49 @@
+Write a PHP script for the following: Design a form to accept a number from the user. 
+Perform the operations and show the results. 
+1) Fibonacci Series. 
+2) To find sum of the digits of that number.
+(Use the concept of self processing page.) 
+
+
+html-:
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Self-processing Page</title>
+</head>
+<body>
+	<h1>Number Operations</h1>
+	<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+		<label for="number">Enter a number:</label>
+		<input type="number" name="number" id="number" required>
+		<br><br>
+		<input type="submit" value="Submit">
+	</form>
+	<?php
+		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+			$number = $_POST["number"];
+			// Fibonacci series
+			$fibonacci = "";
+			$a = 0;
+			$b = 1;
+			while ($a <= $number) {
+				$fibonacci .= $a . " ";
+				$c = $a + $b;
+				$a = $b;
+				$b = $c;
+			}
+			echo "<h2>Fibonacci Series:</h2>";
+			echo "<p>" . $fibonacci . "</p>";
+			// Sum of digits
+			$sum = 0;
+			while ($number > 0) {
+				$sum += $number % 10;
+				$number = (int)($number / 10);
+			}
+			echo "<h2>Sum of Digits:</h2>";
+			echo "<p>" . $sum . "</p>";
+		}
+	?>
+</body>
+</html>

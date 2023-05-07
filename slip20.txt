@@ -1,0 +1,36 @@
+Q1.create a student.xml file containing at least 5 student information
+
+XML-:
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+  <student>
+    <name>John Smith</name>
+    <id>1234</id>
+    <major>Computer Science</major>
+    <gpa>3.5</gpa>
+  </student>
+  <student>
+    <name>Jane Doe</name>
+    <id>5678</id>
+    <major>Mathematics</major>
+    <gpa>3.2</gpa>
+  </student>
+  <student>
+    <name>Bob Johnson</name>
+    <id>9012</id>
+    <major>Business Administration</major>
+    <gpa>3.7</gpa>
+  </student>
+  <student>
+    <name>Susan Lee</name>
+    <id>3456</id>
+    <major>Biology</major>
+    <gpa>3.9</gpa>
+  </student>
+  <student>
+    <name>David Kim</name>
+    <id>7890</id>
+    <major>Chemistry</major>
+    <gpa>3.1</gpa>
+  </student>
+</students>

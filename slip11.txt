@@ -1,0 +1,45 @@
+Q1.Write a Javascript program to accept name of student, change font color to red, font size to 18 if 
+student name is present otherwise on clicking on empty text box display image which changes its size 
+(Use onblur, onload, onmousehover, onmouseclick, onmouseup)
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Accept Name of Student and Display Image with Changing Size</title>
+    <script>
+      function checkName() {
+        const nameInput = document.getElementById("name");
+        const name = nameInput.value;
+        
+        if (name.trim() === "") {
+          // Display image with changing size
+          const image = document.getElementById("image");
+          image.style.display = "block";
+          image.style.width = "50px";
+          image.onmouseover = function() {
+            image.style.width = "100px";
+          }
+          image.onmouseout = function() {
+            image.style.width = "50px";
+          }
+          image.onclick = function() {
+            image.style.width = "150px";
+          }
+          image.onmouseup = function() {
+            image.style.width = "50px";
+          }
+        } else {
+          // Change font color and size
+          nameInput.style.color = "red";
+          nameInput.style.fontSize = "18px";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <label for="name">Name:</label>
+    <input type="text" id="name" onblur="checkName()">
+    <br><br>
+    <img src="https://via.placeholder.com/150" id="image" style="display: none;">
+  </body>
+</html>

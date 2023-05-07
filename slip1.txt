@@ -1,0 +1,17 @@
+Q1.Write a PHP script to keep track of number of times the web page has been accessed (Use Session
+Tracking).
+
+PHP-:
+<?php
+session_start();
+
+// Check if the 'page_views' session variable is set
+if(isset($_SESSION['page_views'])) {
+    $_SESSION['page_views']++; // If set, increment the counter
+} else {
+    $_SESSION['page_views'] = 1; // If not set, initialize it to 1
+}
+
+// Display the number of page views
+echo "You have visited this page " . $_SESSION['page_views'] . " times.";
+?>

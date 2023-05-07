@@ -1,0 +1,86 @@
+Q1.Write a PHP script using AJAX concept, to check user name and password are valid or Invalid (use 
+database to store user name and password)
+
+index.html:
+php-:
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Form</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#login-form").submit(function(event){
+				event.preventDefault();
+				var username = $("#username").val();
+				var password = $("#password").val();
+				$.ajax({
+					url: "check_login.php",
+					type: "POST",
+					data: { username: username, password: password },
+					success: function(response){
+						if(response == "success"){
+							window.location.href = "dashboard.php";
+						}
+						else{
+							$("#error").html("Invalid username or password");
+						}
+					}
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<h2>Login Form</h2>
+	<form id="login-form" method="POST">
+		<label for="username">Username:</label>
+		<input type="text" id="username" name="username"><br><br>
+		<label for="password">Password:</label>
+		<input type="password" id="password" name="password"><br><br>
+		<input type="submit" value="Submit">
+	</form>
+	<div id="error"></div>
+</body>
+</html>
+
+
+check_login.php:
+
+<?php
+require_once("db_connect.php");
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+	$username = $_POST["username"];
+	$password = $_POST["password"];
+
+	$sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+	$result = mysqli_query($conn, $sql);
+
+	if(mysqli_num_rows($result) == 1){
+		echo "success";
+	}
+	else{
+		echo "failure";
+	}
+}
+
+mysqli_close($conn);
+?>
+
+
+db_connect.php:
+
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "my_db";
+
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+if(!$conn){
+	die("Connection failed: " . mysqli_connect_error());
+}
+?>

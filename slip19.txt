@@ -1,0 +1,38 @@
+Q1.Write a Java Script Program to validate user name and password on onSubmit event.
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Form</title>
+	<script>
+		function validateForm() {
+			var username = document.forms["login"]["username"].value;
+			var password = document.forms["login"]["password"].value;
+
+			if (username == "") {
+				alert("Username must be filled out");
+				return false;
+			}
+
+			if (password == "") {
+				alert("Password must be filled out");
+				return false;
+			}
+
+			// add more validation rules as required
+
+			return true;
+		}
+	</script>
+</head>
+<body>
+	<h1>Login Form</h1>
+	<form name="login" onsubmit="return validateForm()">
+		<label for="username">Username:</label>
+		<input type="text" id="username" name="username"><br><br>
+		<label for="password">Password:</label>
+		<input type="password" id="password" name="password"><br><br>
+		<input type="submit" value="Submit">
+	</form>
+</body>
+</html>

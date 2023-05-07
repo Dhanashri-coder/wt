@@ -1,0 +1,72 @@
+Q1. Create TEACHER table as follows TEACHER(tno, tname, qualification, salary). Write Ajax 
+program to select a teachers name and print the selected teachers details
+
+HTML-:
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Teacher Details</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("#teacher-list").change(function() {
+          // Get the selected teacher's name from the dropdown list
+          const tname = $(this).val();
+
+          // Send an AJAX request to retrieve the teacher's details
+          $.ajax({
+            url: "teacher-details.php",
+            data: { tname: tname },
+            success: function(data) {
+              // Display the teacher's details in the result div
+              $("#result").html(data);
+            }
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <label for="teacher-list">Select a Teacher:</label>
+    <select id="teacher-list" name="teacher">
+      <option value="">-- Select a Teacher --</option>
+      <option value="John">John</option>
+      <option value="Jane">Jane</option>
+      <option value="Bob">Bob</option>
+    </select>
+    <div id="result"></div>
+  </body>
+</html>
+
+PHP-:
+
+<?php
+// Create a database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "school";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+// Get the selected teacher's name from the AJAX request
+$tname = $_GET["tname"];
+
+// Retrieve the selected teacher's details from the TEACHER table
+$sql = "SELECT * FROM TEACHER WHERE tname='$tname'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  // Generate an HTML table with the teacher's details
+  echo "<table>";
+  while ($row = $result->fetch_assoc()) {
+    echo "<tr><td>Teacher No:</td><td>" . $row["tno"] . "</td></tr>";
+    echo "<tr><td>Name:</td><td>" . $row["tname"] . "</td></tr>";
+    echo "<tr><td>Qualification:</td><td>" . $row["qualification"] . "</td></tr>";
+

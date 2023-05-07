@@ -1,0 +1,89 @@
+Q1.Write Ajax program to get book details from XML file when user select a book name. Create XML 
+file for storing details of book(title, author, year, price).
+
+HTML:
+<label for="bookSelect">Select a book:</label>
+<select id="bookSelect"></select>
+<br>
+<label for="titleOutput">Title:</label>
+<span id="titleOutput"></span>
+<br>
+<label for="authorOutput">Author:</label>
+<span id="authorOutput"></span>
+<br>
+<label for="yearOutput">Year:</label>
+<span id="yearOutput"></span>
+<br>
+<label for="priceOutput">Price:</label>
+<span id="priceOutput"></span>
+
+JavaScript:
+// get the book select element and the output spans
+const bookSelect = document.getElementById('bookSelect');
+const titleOutput = document.getElementById('titleOutput');
+const authorOutput = document.getElementById('authorOutput');
+const yearOutput = document.getElementById('yearOutput');
+const priceOutput = document.getElementById('priceOutput');
+
+// create an XMLHttpRequest object
+const xhr = new XMLHttpRequest();
+
+// define a function to handle the XMLHttpRequest response
+xhr.onreadystatechange = function() {
+  if (this.readyState === 4 && this.status === 200) {
+    // parse the XML response
+    const xmlDoc = this.responseXML;
+
+    // get the book elements from the XML
+    const books = xmlDoc.getElementsByTagName('book');
+
+    // iterate through the book elements and add options to the select element
+    for (let i = 0; i < books.length; i++) {
+      const title = books[i].getElementsByTagName('title')[0].childNodes[0].nodeValue;
+      const option = document.createElement('option');
+      option.textContent = title;
+      bookSelect.appendChild(option);
+    }
+
+    // add an event listener to the select element
+    bookSelect.addEventListener('change', function() {
+      // get the selected book
+      const selectedBook = books[bookSelect.selectedIndex];
+
+      // get the book details from the XML and display them
+      titleOutput.textContent = selectedBook.getElementsByTagName('title')[0].childNodes[0].nodeValue;
+      authorOutput.textContent = selectedBook.getElementsByTagName('author')[0].childNodes[0].nodeValue;
+      yearOutput.textContent = selectedBook.getElementsByTagName('year')[0].childNodes[0].nodeValue;
+      priceOutput.textContent = selectedBook.getElementsByTagName('price')[0].childNodes[0].nodeValue;
+    });
+  }
+};
+
+// open and send the XMLHttpRequest
+xhr.open('GET', 'books.xml', true);
+xhr.send();
+
+
+XML:
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+  <book>
+    <title>The Great Gatsby</title>
+    <author>F. Scott Fitzgerald</author>
+    <year>1925</year>
+    <price>12.99</price>
+  </book>
+  <book>
+    <title>To Kill a Mockingbird</title>
+    <author>Harper Lee</author>
+    <year>1960</year>
+    <price>9.99</price>
+  </book>
+  <book>
+    <title>1984</title>
+    <author>George Orwell</author>
+    <year>1949</year>
+    <price>8.99</price>
+  </book>
+</library>
+

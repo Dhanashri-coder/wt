@@ -1,0 +1,53 @@
+Q1.Create a XML file which gives details of books available in “Bookstore” from following 
+categories. 
+1) Yoga
+2) Story
+3) Technical
+and elements in each category are in the following format
+<Book>
+<Book_Title> --------------</Book_Title>
+<Book_Author> ---------------</Book_Author>
+<Book_Price> --------------</Book_Price>
+</Book>
+Save the file as “Bookcategory.xml”
+
+xml-:
+
+<Bookstore>
+  <Category name="Yoga">
+    <Book>
+      <Book_Title>Yoga Anatomy</Book_Title>
+      <Book_Author>Leslie Kaminoff</Book_Author>
+      <Book_Price>25.99</Book_Price>
+    </Book>
+    <Book>
+      <Book_Title>The Heart of Yoga</Book_Title>
+      <Book_Author>T.K.V. Desikachar</Book_Author>
+      <Book_Price>19.99</Book_Price>
+    </Book>
+  </Category>
+  <Category name="Story">
+    <Book>
+      <Book_Title>To Kill a Mockingbird</Book_Title>
+      <Book_Author>Harper Lee</Book_Author>
+      <Book_Price>15.99</Book_Price>
+    </Book>
+    <Book>
+      <Book_Title>The Great Gatsby</Book_Title>
+      <Book_Author>F. Scott Fitzgerald</Book_Author>
+      <Book_Price>12.99</Book_Price>
+    </Book>
+  </Category>
+  <Category name="Technical">
+    <Book>
+      <Book_Title>JavaScript: The Good Parts</Book_Title>
+      <Book_Author>Douglas Crockford</Book_Author>
+      <Book_Price>29.99</Book_Price>
+    </Book>
+    <Book>
+      <Book_Title>Head First Design Patterns</Book_Title>
+      <Book_Author>Eric Freeman</Book_Author>
+      <Book_Price>39.99</Book_Price>
+    </Book>
+  </Category>
+</Bookstore>

@@ -1,0 +1,36 @@
+Q1.Write AJAX program where the user is requested to write his or her name in a text box, and the 
+server keeps sending back responses while the user is typing. If the user name is not entered then the 
+message displayed will be, “Stranger, please tell me your name!”. If the name is Rohit, Virat, Dhoni, 
+Ashwin or Harbhajan , the server responds with “Hello, master !”. If the name is anything else, the 
+message will be “, I don’t know you!” 
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AJAX Program for Dynamic Name Response</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("#name-input").keyup(function() {
+          // Get the user's name from the input box
+          const name = $(this).val().trim();
+          
+          // Send an AJAX request to the server with the user's name
+          $.ajax({
+            url: "response.php",
+            data: { name: name },
+            success: function(data) {
+              // Display the server's response in the message div
+              $("#message").text(data);
+            }
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <label for="name-input">Enter Your Name:</label>
+    <input type="text" id="name-input" name="name">
+    <div id="message"></div>
+  </body>
+</html>

@@ -1,0 +1,70 @@
+Q1. Write a script to create “cricket.xml” file with multiple elements as shown below:
+<CricketTeam>
+<Team country=”Australia”>
+<player>____</player>
+<runs>______</runs>
+<wicket>____</wicket>
+</Team>
+</CricketTeam>
+Write a script to add multiple elements in “cricket.xml” file of category, country=”India”
+
+PHP-:
+<?php
+
+// Create the SimpleXMLElement object
+$xml = new SimpleXMLElement('<CricketTeam></CricketTeam>');
+
+// Add the first Team element for Australia
+$australiaTeam = $xml->addChild('Team');
+$australiaTeam->addAttribute('country', 'Australia');
+$australiaTeam->addChild('player', 'Steve Smith');
+$australiaTeam->addChild('runs', '6058');
+$australiaTeam->addChild('wicket', '0');
+
+// Add the second Team element for Australia
+$australiaTeam2 = $xml->addChild('Team');
+$australiaTeam2->addAttribute('country', 'Australia');
+$australiaTeam2->addChild('player', 'David Warner');
+$australiaTeam2->addChild('runs', '5343');
+$australiaTeam2->addChild('wicket', '0');
+
+// Add the third Team element for India
+$indiaTeam = $xml->addChild('Team');
+$indiaTeam->addAttribute('country', 'India');
+$indiaTeam->addChild('player', 'Virat Kohli');
+$indiaTeam->addChild('runs', '7318');
+$indiaTeam->addChild('wicket', '4');
+
+// Add the fourth Team element for India
+$indiaTeam2 = $xml->addChild('Team');
+$indiaTeam2->addAttribute('country', 'India');
+$indiaTeam2->addChild('player', 'Rohit Sharma');
+$indiaTeam2->addChild('runs', '9115');
+$indiaTeam2->addChild('wicket', '8');
+
+// Save the XML file
+$xml->asXML('cricket.xml');
+
+
+To print the details of the Indian team in a tabular format after accepting the course as input, you can use the following PHP script:
+
+PHP-:
+
+<?php
+
+// Load the XML file
+$xml = simplexml_load_file('cricket.xml');
+
+// Get the course input from user
+$course = $_POST['course'];
+
+// Loop through the Team elements with country=India
+echo "<table><tr><th>Player</th><th>Runs</th><th>Wicket</th></tr>";
+foreach ($xml->Team as $team) {
+  if ($team['country'] == 'India') {
+    if ($team->$course) {
+      echo "<tr><td>" . $team->player . "</td><td>" . $team->$course . "</td><td>" . $team->wicket . "</td></tr>";
+    }
+  }
+}
+echo "</table>";

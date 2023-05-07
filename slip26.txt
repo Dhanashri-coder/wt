@@ -1,0 +1,52 @@
+Q1.) Create employee table as follows EMP (eno, ename, designation, salary). Write Ajax program to 
+select the employees name and print the selected employee’s details.
+
+html-:
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Employee Details</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="script.js"></script>
+</head>
+<body>
+	<h1>Select an Employee</h1>
+	<select id="employee-select">
+		<option value="">Select Employee</option>
+		<option value="1">John</option>
+		<option value="2">Jane</option>
+		<option value="3">Bob</option>
+	</select>
+
+	<div id="employee-details"></div>
+</body>
+</html>
+
+
+javascript-:
+
+$(document).ready(function() {
+	$('#employee-select').on('change', function() {
+		var eno = $(this).val();
+		if(eno) {
+			$.ajax({
+				url: 'employee-details.php',
+				type: 'GET',
+				data: {eno: eno},
+				dataType: 'json',
+				success: function(response) {
+					var html = '<h2>Employee Details</h2>';
+					html += '<p><strong>Employee Number:</strong> ' + response.eno + '</p>';
+					html += '<p><strong>Name:</strong> ' + response.ename + '</p>';
+					html += '<p><strong>Designation:</strong> ' + response.designation + '</p>';
+					html += '<p><strong>Salary:</strong> ' + response.salary + '</p>';
+					$('#employee-details').html(html);
+				}
+			});
+		} else {
+			$('#employee-details').html('');
+		}
+	});
+});
+

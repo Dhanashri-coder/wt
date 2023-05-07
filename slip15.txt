@@ -1,0 +1,42 @@
+Q. 1) Write Ajax program to fetch suggestions when is user is typing in a textbox. (eg like google 
+suggestions. Hint create array of suggestions and matching string will be displayed) 
+
+HTML-:
+
+<label for="suggestionInput">Type your suggestion:</label>
+<input type="text" id="suggestionInput">
+<ul id="suggestions"></ul>
+
+JavaScript:
+
+// define an array of suggestions
+const suggestions = ['apple', 'banana', 'cherry', 'date', 'elderberry', 'fig', 'grape', 'honeydew', 'indigo apple', 'jackfruit'];
+
+// get the input and suggestions elements
+const input = document.getElementById('suggestionInput');
+const suggestionsList = document.getElementById('suggestions');
+
+// add an event listener to the input element
+input.addEventListener('input', function() {
+  // clear the previous suggestions
+  suggestionsList.innerHTML = '';
+
+  // get the current input value
+  const inputValue = input.value.trim().toLowerCase();
+
+  // if the input value is empty, do nothing
+  if (inputValue === '') {
+    return;
+  }
+
+  // iterate through the suggestions array and find matches
+  suggestions.forEach(function(suggestion) {
+    // check if the suggestion starts with the input value
+    if (suggestion.toLowerCase().startsWith(inputValue)) {
+      // create a new list item for the suggestion and add it to the suggestions list
+      const li = document.createElement('li');
+      li.textContent = suggestion;
+      suggestionsList.appendChild(li);
+    }
+  });
+});

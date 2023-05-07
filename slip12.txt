@@ -1,0 +1,48 @@
+Q1.Write AJAX program to read contact.dat file and print the contents of the file in a tabular format 
+when the user clicks on print button. Contact.dat file should contain srno, name, residence number, 
+mobile number, Address. [Enter at least 3 record in contact.dat file
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Read Contact.dat File and Print Contents in Tabular Format</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("#print-button").click(function() {
+          // Read contact.dat file using AJAX
+          $.ajax({
+            url: "contact.dat",
+            success: function(data) {
+              // Split data into rows and columns
+              const rows = data.trim().split("\n");
+              const tableData = rows.map(function(row) {
+                return row.split(",");
+              });
+              
+              // Generate HTML table from tableData
+              let tableHtml = "<table>";
+              tableHtml += "<tr><th>Sr No.</th><th>Name</th><th>Residence No.</th><th>Mobile No.</th><th>Address</th></tr>";
+              for (let i = 0; i < tableData.length; i++) {
+                const row = tableData[i];
+                tableHtml += "<tr>";
+                for (let j = 0; j < row.length; j++) {
+                  tableHtml += "<td>" + row[j] + "</td>";
+                }
+                tableHtml += "</tr>";
+              }
+              tableHtml += "</table>";
+              
+              // Display HTML table on the web page
+              $("#table-container").html(tableHtml);
+            }
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <button id="print-button">Print Contacts</button>
+    <div id="table-container"></div>
+  </body>
+</html>
