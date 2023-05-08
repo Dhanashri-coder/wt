@@ -1,5 +1,4 @@
-Q1. Create TEACHER table as follows TEACHER(tno, tname, qualification, salary). Write Ajax 
-program to select a teachers name and print the selected teachers details
+set A
 
 HTML-:
 
@@ -16,7 +15,7 @@ HTML-:
 
           // Send an AJAX request to retrieve the teacher's details
           $.ajax({
-            url: "teacher-details.php",
+            url: "teacher.php",
             data: { tname: tname },
             success: function(data) {
               // Display the teacher's details in the result div
@@ -43,12 +42,9 @@ PHP-:
 
 <?php
 // Create a database connection
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "school";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
+<?php
+	$cname=$_POST['cname'];
+	$con=pg_connect("host=192.168.1.254 dbname=exam user=exam password=exam");
 
 // Check connection
 if ($conn->connect_error) {
@@ -69,4 +65,5 @@ if ($result->num_rows > 0) {
     echo "<tr><td>Teacher No:</td><td>" . $row["tno"] . "</td></tr>";
     echo "<tr><td>Name:</td><td>" . $row["tname"] . "</td></tr>";
     echo "<tr><td>Qualification:</td><td>" . $row["qualification"] . "</td></tr>";
-
+  }
+ ?>
