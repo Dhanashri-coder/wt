@@ -1,5 +1,4 @@
-Q1.Create XML file named “Item.xml”with item-name, item-rate, item quantity Store the details of 5
-Items of different Types
+set A
 
 XML-:
 
