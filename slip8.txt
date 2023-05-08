@@ -1,7 +1,4 @@
-Q1.Write a JavaScript to display message ‘Exams are near, have you started preparing for?’ (usealert
-box ) and Accept any two numbers from user and display addition of two number .(Use Prompt and
-confirm box)
-
+set A
 JAVASCRIPT-:
 
 // Display a message using an alert box
