@@ -24,3 +24,30 @@ contact.dat
 1,umesh,422009,9359143923,satpur
 2,paresh,422010,8530578033,satpur
 3,Bhushan,422008,9579958358,satpur
+
+
+set B
+
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+
+# Generate synthetic dataset
+np.random.seed(42)
+heights = np.random.normal(loc=170, scale=10, size=1000)
+weights = 0.4 * heights + np.random.normal(loc=0, scale=5, size=1000)
+data = pd.DataFrame({'Height': heights, 'Weight': weights})
+
+X = data[['Height']]
+y = data['Weight']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+from sklearn.linear_model import LinearRegression
+
+# Train a linear regression model
+lr_model = LinearRegression()
+lr_model.fit(X_train, y_train)
+
+# Predict on the test data
+y_pred = lr_model.predict(X_test)
+print(y_pred)
