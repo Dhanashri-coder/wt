@@ -39,3 +39,34 @@ input.addEventListener('input', function() {
     }
   });
 });
+
+set b
+
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+
+# Create the dataset
+data = {'company': ['tata', 'Mg', 'kia', 'hyundai'],
+        'model': ['nexon', 'astor', 'seltos', 'creta'],
+        'year': [2017, 2021, 2019, 2015]}
+df = pd.DataFrame(data)
+
+# Convert categorical values into numeric format
+df['company'] = pd.Categorical(df['company']).codes
+df['model'] = pd.Categorical(df['model']).codes
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(df[['company', 'model']], df['year'], test_size=0.2, random_state=42)
+
+# Train the linear regression model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Print the coefficients of the model
+print('Coefficients:', model.coef_)
+
+# Predict the year of a car
+predictions = model.predict(X_test)
+print('Predictions:', predictions)
+
