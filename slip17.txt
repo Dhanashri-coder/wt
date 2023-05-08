@@ -26,3 +26,51 @@ PHP-:
 	</form>
 </body>
 </html>
+
+
+setb
+
+import re
+import nltk
+from nltk.tokenize import sent_tokenize, word_tokenize
+from nltk.corpus import stopwords
+from heapq import nlargest
+
+# Example text paragraph
+text = "Natural language processing (NLP) is a subfield of linguistics, computer science, In 1950, Alan Turing published an article titled 'Computing Machinery and Intelligence' which proposed what is now called the Turing test as a criterion of intelligence."
+
+# Preprocess the text to remove special characters and digits
+text = re.sub('[^a-zA-Z]', ' ', text)
+text = re.sub(r'\s+', ' ', text)
+
+# Tokenize the text into sentences
+sentences = sent_tokenize(text)
+
+# Tokenize each sentence into words and remove stop words
+stop_words = set(stopwords.words('english'))
+words = [word_tokenize(sentence.lower()) for sentence in sentences]
+words = [[word for word in sentence if word not in stop_words] for sentence in words]
+
+# Calculate the frequency of each word
+word_freq = {}
+for sentence in words:
+    for word in sentence:
+        if word not in word_freq:
+            word_freq[word] = 1
+        else:
+            word_freq[word] += 1
+
+# Calculate the score of each sentence based on the frequency of its words
+sentence_scores = {}
+for i, sentence in enumerate(words):
+    sentence_scores[i] = 0
+    for word in sentence:
+        if word in word_freq:
+            sentence_scores[i] += word_freq[word]
+
+# Get the top 3 sentences with highest scores to generate the summary
+summary_sentences = nlargest(3, sentence_scores, key=sentence_scores.get)
+summary = ' '.join([sentences[i] for i in summary_sentences])
+
+print(summary)
+
