@@ -1,4 +1,5 @@
-Q1.Write a JavaScript function to validate username and password for a membership form.
+set A
+
 function validateMembershipForm(username, password) {
   const usernameRegex = /^[a-zA-Z0-9_-]{5,20}$/; // Regular expression for username
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}$/; // Regular expression for password
