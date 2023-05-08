@@ -92,3 +92,27 @@ if ($error != "") {
 	echo "<div style='color:green;'>Success: Voter registration is completed.</div>";
 }
 ?>
+
+
+from mlxtend.preprocessing import TransactionEncoder
+from mlxtend.frequent_patterns import apriori, association_rules
+
+# Create the transaction dataset
+dataset = [
+    ['Milk', 'Bread', 'Eggs'],
+    ['Bread', 'Butter'],
+    ['Milk', 'Eggs', 'Cheese', 'Bread'],
+    ['Bread', 'Eggs'],
+    ['Milk', 'Bread', 'Butter', 'Cheese']
+]
+
+# Convert the dataset into a one-hot encoded format
+te = TransactionEncoder()
+te_array = te.fit(dataset).transform(dataset)
+onehot = pd.DataFrame(te_array, columns=te.columns_)
+
+# Generate frequent itemsets
+frequent_itemsets = apriori(onehot, min_support=0.4, use_colnames=True)
+
+# Generate association rules
+rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=0.7)
