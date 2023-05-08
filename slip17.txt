@@ -1,5 +1,4 @@
-Q1.Write a Java Script Program to show Hello Good Morning message onload event using alert box 
-and display the Student registration from.
+set A
 
 PHP-:
 <!DOCTYPE html>
