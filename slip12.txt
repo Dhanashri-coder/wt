@@ -1,6 +1,3 @@
-Q1.Write AJAX program to read contact.dat file and print the contents of the file in a tabular format 
-when the user clicks on print button. Contact.dat file should contain srno, name, residence number, 
-mobile number, Address. [Enter at least 3 record in contact.dat file
 
 <!DOCTYPE html>
 <html>
@@ -46,3 +43,9 @@ mobile number, Address. [Enter at least 3 record in contact.dat file
     <div id="table-container"></div>
   </body>
 </html>
+
+
+contact.dat
+1,umesh,422009,9359143923,satpur
+2,paresh,422010,8530578033,satpur
+3,Bhushan,422008,9579958358,satpur
