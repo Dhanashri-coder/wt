@@ -30,3 +30,43 @@ PHP-:
 	<button onclick="fibonacci()">Show Fibonacci Numbers</button>
 </body>
 </html>
+
+setb
+
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize, sent_tokenize
+from nltk.probability import FreqDist
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
+
+# Example text paragraph
+text = "The quick brown fox jumps over the lazy dog. The dog is too lazy to move."
+
+# Tokenize sentences
+sentences = sent_tokenize(text)
+
+# Tokenize words
+words = [word.lower() for word in word_tokenize(text) if word.isalpha()]
+
+# Remove stopwords
+stopwords = set(stopwords.words('english'))
+words = [word for word in words if word not in stopwords]
+
+# Calculate frequency distribution
+fdist = FreqDist(words)
+print(fdist.most_common())
+
+# Plot frequency distribution
+plt.figure(figsize=(10, 5))
+fdist.plot(30, cumulative=False)
+plt.show()
+
+# Generate wordcloud
+wordcloud = WordCloud(width=800, height=400, background_color='white').generate(text)
+
+plt.figure(figsize=(12, 8))
+plt.imshow(wordcloud)
+plt.axis("off")
+plt.show()
+
