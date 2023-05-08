@@ -1,8 +1,3 @@
-Write a PHP script for the following: Design a form to accept a number from the user. 
-Perform the operations and show the results. 
-1) Fibonacci Series. 
-2) To find sum of the digits of that number.
-(Use the concept of self processing page.) 
 
 
 html-:
