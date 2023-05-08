@@ -1,5 +1,4 @@
-Q1.Write Ajax program to get book details from XML file when user select a book name. Create XML 
-file for storing details of book(title, author, year, price).
+set A
 
 HTML:
 <label for="bookSelect">Select a book:</label>
@@ -33,7 +32,7 @@ xhr.onreadystatechange = function() {
   if (this.readyState === 4 && this.status === 200) {
     // parse the XML response
     const xmlDoc = this.responseXML;
-
+    
     // get the book elements from the XML
     const books = xmlDoc.getElementsByTagName('book');
 
