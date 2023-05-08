@@ -1,5 +1,4 @@
-Q1.Write a PHP script using AJAX concept, to check user name and password are valid or Invalid (use 
-database to store user name and password)
+
 
 index.html:
 php-:
@@ -73,14 +72,45 @@ mysqli_close($conn);
 db_connect.php:
 
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "my_db";
-
-$conn = mysqli_connect($servername, $username, $password, $dbname);
 
 if(!$conn){
 	die("Connection failed: " . mysqli_connect_error());
 }
 ?>
+
+
+setb
+
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+
+# Load the dataset into a pandas dataframe
+df = pd.read_csv('car_dataset.csv')
+
+# Print the first five rows of the dataframe
+print(df.head())
+
+# Identify the independent and dependent variables
+X = df[['horsepower']]
+y = df['price']
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+
+# Create a linear regression model and fit it to the training data
+regressor = LinearRegression()
+regressor.fit(X_train, y_train)
+
+# Make predictions on the testing data
+y_pred = regressor.predict(X_test)
+
+# Calculate the R-squared value
+r_squared = regressor.score(X_test, y_test)
+
+print('R-squared value:', r_squared)
+
+
+
+
