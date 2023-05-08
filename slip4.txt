@@ -1,12 +1,10 @@
-Q1.Write a PHP script to accept Employee details (Eno, Ename, Address) on first page. On second
-page accept earning (Basic, DA, HRA). On third page print Employee information (Eno, Ename, Address,
-Basic, DA, HRA, Total) [ Use Session] 
+setA
 
 HTML file :
 
 <html>
 <body>
-<form action="slip18_2_1.php" method="get">
+<form action="slip4_2_1.php" method="get">
 <center>  <h2>Enter Enployee Details :</h2>  <br>
 
 <table>
@@ -20,7 +18,7 @@ HTML file :
 </body>
 </html>
 
-PHP file : slip_18_2_1.php
+PHP file : slip4_2_1.php
 
 <?php
 session_start();
@@ -36,7 +34,7 @@ $_SESSION['eadd'] = $eadd;
 <html>
 <body>
 
-<form action="slip18_2_2.php" method="post">
+<form action="slip4_2_2.php" method="post">
 <center>
 <h2>Enter Earnings of Employee:</h2>
 
@@ -51,7 +49,7 @@ $_SESSION['eadd'] = $eadd;
 </body>
 </html>
 
-PHP file : slip18_2_2.php
+PHP file : slip4_2_2.php
 <?php
 session_start();
 $e1 = $_POST['e1'];
