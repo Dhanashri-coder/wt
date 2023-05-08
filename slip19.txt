@@ -1,4 +1,4 @@
-Q1.Write a Java Script Program to validate user name and password on onSubmit event.
+
 
 <!DOCTYPE html>
 <html>
