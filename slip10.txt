@@ -1,5 +1,4 @@
-Q1.Create a HTML fileto insert text before and after a Paragraph using jQuery. [Hint : Use before( ) 
-and after( )]
+set A
 
 <!DOCTYPE html>
 <html>
