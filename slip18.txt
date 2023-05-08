@@ -1,4 +1,4 @@
-Q. 1) Write a Java Script Program to print Fibonacci numbers on onclick event. 
+setA
 
 PHP-:
 
