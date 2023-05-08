@@ -73,3 +73,38 @@ PHP file :
                                                                 echo "1";
                                                 }
 ?>
+
+
+set B
+
+import pandas as pd
+
+df = pd.read_csv('User.csv')
+# Convert the Gender column to numerical (1 for male, 0 for female)
+df['Gender'] = pd.get_dummies(df['Gender'], drop_first=True)
+
+# Split the data into independent and target variables
+X = df[['Gender', 'Age', 'EstimatedSalary']]
+y = df['Purchased']
+
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+from sklearn.linear_model import LogisticRegression
+
+# Create a logistic regression object
+logreg = LogisticRegression()
+
+# Train the model using the training data
+logreg.fit(X_train, y_train)
+from sklearn.metrics import accuracy_score, classification_report
+
+# Make predictions using the testing data
+y_pred = logreg.predict(X_test)
+
+# Evaluate the model's accuracy
+print("Accuracy:", accuracy_score(y_test, y_pred))
+
+# Generate a classification report
+print(classification_report(y_test, y_pred))
+
