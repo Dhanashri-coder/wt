@@ -81,7 +81,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn import metrics
 from sklearn.metrics import accuracy_score
-#Q1
+
 df = pd.read_csv("Fish.csv")
 X = df.iloc[:,[2,3,4,5,6]].values
 y = df.iloc[:,[1]].values
