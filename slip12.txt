@@ -1,48 +1,23 @@
+set A
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Read Contact.dat File and Print Contents in Tabular Format</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-      $(document).ready(function() {
-        $("#print-button").click(function() {
-          // Read contact.dat file using AJAX
-          $.ajax({
-            url: "contact.dat",
-            success: function(data) {
-              // Split data into rows and columns
-              const rows = data.trim().split("\n");
-              const tableData = rows.map(function(row) {
-                return row.split(",");
-              });
-              
-              // Generate HTML table from tableData
-              let tableHtml = "<table>";
-              tableHtml += "<tr><th>Sr No.</th><th>Name</th><th>Residence No.</th><th>Mobile No.</th><th>Address</th></tr>";
-              for (let i = 0; i < tableData.length; i++) {
-                const row = tableData[i];
-                tableHtml += "<tr>";
-                for (let j = 0; j < row.length; j++) {
-                  tableHtml += "<td>" + row[j] + "</td>";
-                }
-                tableHtml += "</tr>";
-              }
-              tableHtml += "</table>";
-              
-              // Display HTML table on the web page
-              $("#table-container").html(tableHtml);
-            }
-          });
-        });
-      });
-    </script>
-  </head>
-  <body>
-    <button id="print-button">Print Contacts</button>
-    <div id="table-container"></div>
-  </body>
-</html>
+<?php
+$fp=fopen("contact.dat","r");
+echo"<table border=1>";
+echo"<tr><th>Sr.no</th><th>Name</th><th>Residence no</th><th>Mob.No</th><th>Address</th></tr>";
+while($row=fgets($fp,60))
+{
+        $data=explode(',',$row);
+	echo"<tr>";
+	for($n=0;$n<5;$n++)
+	{
+		echo"<td> $data[$n] </td>";
+	}
+	echo"</tr>";
+}
+echo"</table>";
+fclose($fp);
+?>
+
 
 
 contact.dat
