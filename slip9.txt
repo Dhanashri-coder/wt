@@ -11,3 +11,39 @@ function validateMembershipForm(username, password) {
     return false; // Either one or both are invalid
   }
 }
+
+
+set B
+
+transactions = [    ['bread', 'butter', 'jam'],
+    ['bread', 'butter', 'tea', 'sugar'],
+    ['coffee', 'sugar', 'milk'],
+    ['bread', 'butter', 'coffee'],
+    ['coffee', 'sugar', 'bread', 'butter', 'jam'],
+    ['bread', 'butter', 'jam', 'tea'],
+    ['coffee', 'sugar', 'bread', 'butter', 'jam'],
+    ['coffee', 'bread', 'milk'],
+    ['coffee', 'sugar', 'tea'],
+    ['bread', 'butter', 'coffee', 'sugar'],
+    ['tea', 'sugar', 'milk']
+]
+
+from mlxtend.preprocessing import TransactionEncoder
+
+# Convert categorical values into numeric format
+te = TransactionEncoder()
+te_ary = te.fit(transactions).transform(transactions)
+df = pd.DataFrame(te_ary, columns=te.columns_)
+
+from mlxtend.frequent_patterns import apriori, association_rules
+
+# Generate frequent itemsets with a minimum support of 0.3
+frequent_itemsets = apriori(df, min_support=0.3, use_colnames=True)
+
+# Generate association rules with a minimum confidence of 0.8
+rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=0.8)
+
+# Print the frequent itemsets and association rules
+print("Frequent Itemsets:\n", frequent_itemsets)
+print("\nAssociation Rules:\n", rules)
+
