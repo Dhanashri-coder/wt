@@ -1,12 +1,8 @@
-Q1.Write a PHP script to change the preferences of your web page like font style, font size, font color,
-background color using cookie. Display selected setting on next web page and actual implementation
-(with new settings) on third page (Use Cookies).
-
 HTML file :
 
 <html>
 <body>
-<form action="slip21_2_1.php" method="get">
+<form action="slip2_2_1.php" method="get">
 <center>
 <b>Select font style :</b><input type=text name=s1> <br>
 <b>Enter font size : </b><input type=text name=s><br>
@@ -18,7 +14,7 @@ HTML file :
 </body>
 </html>
 
-PHP file : slip21_2_1.php
+PHP file : slip2_2_1.php
 
 <?php
 echo "style is ".$_GET['s1']."<br>color is ".$_GET['c']."<br>Background color is ".$_GET['b']."<br>size is ".$_GET['s'];
@@ -30,13 +26,13 @@ setcookie("set4",$_GET['s'],time()+3600);
 
 <html>
 <body>
-<form action="slip21_2_2.php">
+<form action="slip2_2_2.php">
 <input type=submit value=OK>
 </form>
 </body>
 </html>
 
-PHP file : slip21_2_2.php
+PHP file : slip2_2_2.php
 <?php
 $style = $_COOKIE['set1'];
 $color = $_COOKIE['set2'];
@@ -48,4 +44,4 @@ echo "<font color=$color size=$size>$msg";
 echo "</font></body>";
 ?>
 
-Q2.
+
