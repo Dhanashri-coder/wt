@@ -67,3 +67,34 @@ if ($result->num_rows > 0) {
     echo "<tr><td>Qualification:</td><td>" . $row["qualification"] . "</td></tr>";
   }
  ?>
+ 
+ 
+ set b
+ 
+ import pandas as pd
+from mlxtend.preprocessing import TransactionEncoder
+from mlxtend.frequent_patterns import apriori, association_rules
+
+# Create the dataset
+dataset = [['Apple', 'Mango', 'Banana'],
+           ['Mango', 'Banana', 'Cabbage', 'Carrots'],
+           ['Mango', 'Banana', 'Carrots'],
+           ['Mango', 'Carrots']]
+
+# Convert categorical values to numeric using one-hot encoding
+te = TransactionEncoder()
+te_ary = te.fit(dataset).transform(dataset)
+df = pd.DataFrame(te_ary, columns=te.columns_)
+
+# Apply Apriori algorithm with minimum support of 0.5
+frequent_itemsets = apriori(df, min_support=0.5, use_colnames=True)
+
+# Generate association rules with minimum confidence of 0.7
+rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=0.7)
+
+# Print the frequent itemsets and association rules
+print("Frequent Itemsets:")
+print(frequent_itemsets)
+print("\nAssociation Rules:")
+print(rules)
+
