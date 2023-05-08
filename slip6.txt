@@ -1,5 +1,4 @@
-Q1. Write PHP script to read “book.xml” file into simpleXML object. Display attributes and elements .
-( simple_xml_load_file() function ) 
+set A
 
 XML file -
 <?xml version='1.0' encoding ='UTF-8' ?>
@@ -30,6 +29,6 @@ XML file -
 
 Php file -
 <?php
-$xml=simplexml_load_file("slip_24.xml") or die("eror:cannot create object");
+$xml=simplexml_load_file("slip6.xml") or die("eror:cannot create object");
 var_dump($xml);
 ?>
