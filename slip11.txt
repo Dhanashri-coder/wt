@@ -41,3 +41,36 @@ set A
     <img src="https://via.placeholder.com/150" id="image" style="display: none;">
   </body>
 </html>
+
+
+set b
+
+# Importing libraries
+import pandas as pd
+from mlxtend.preprocessing import TransactionEncoder
+from mlxtend.frequent_patterns import apriori, association_rules
+
+# Creating the dataset
+dataset = [['butter', 'bread', 'milk'],
+           ['butter', 'flour', 'milk', 'sugar'],
+           ['butter', 'eggs', 'milk', 'salt'],
+           ['eggs'],
+           ['butter', 'flour', 'milk', 'salt']]
+
+# Converting the categorical values into numeric format
+te = TransactionEncoder()
+te_data = te.fit(dataset).transform(dataset)
+df = pd.DataFrame(te_data, columns=te.columns_)
+
+# Generating frequent itemsets
+frequent_itemsets = apriori(df, min_support=0.4, use_colnames=True)
+print("Frequent Itemsets with minimum support of 0.4:\n", frequent_itemsets)
+
+# Generating association rules
+association_rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=0.7)
+print("\nAssociation Rules with minimum confidence of 0.7:\n", association_rules)
+
+# Generating frequent itemsets with different minimum support values
+for min_sup in [0.2, 0.3, 0.5]:
+    frequent_itemsets = apriori(df, min_support=min_sup, use_colnames=True)
+    print("\nFrequent Itemsets with minimum support of", min_sup, ":\n", frequent_itemsets)
