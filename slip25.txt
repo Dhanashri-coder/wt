@@ -1,12 +1,3 @@
-Q1. Write a script to create “cricket.xml” file with multiple elements as shown below:
-<CricketTeam>
-<Team country=”Australia”>
-<player>____</player>
-<runs>______</runs>
-<wicket>____</wicket>
-</Team>
-</CricketTeam>
-Write a script to add multiple elements in “cricket.xml” file of category, country=”India”
 
 PHP-:
 <?php
@@ -68,3 +59,57 @@ foreach ($xml->Team as $team) {
   }
 }
 echo "</table>";
+
+
+set A
+import pandas as pd
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk.sentiment import SentimentIntensityAnalyzer
+
+# read the dataset
+df = pd.read_csv("covid_2021_1.csv")
+
+# drop unnecessary columns
+df = df.drop(columns=['author', 'datetime'])
+
+# drop rows with missing values
+df = df.dropna()
+
+# define function to tokenize comments in words
+def tokenize_comments(comment):
+    return word_tokenize(comment.lower())
+
+# tokenize comments in words
+df['tokenized_comments'] = df['comment'].apply(tokenize_comments)
+
+# perform sentiment analysis
+sid = SentimentIntensityAnalyzer()
+df['sentiment'] = df['comment'].apply(lambda x: sid.polarity_scores(x))
+
+# classify comments as positive, negative or neutral based on compound score
+df['sentiment'] = df['sentiment'].apply(lambda x: 'positive' if x['compound'] > 0 
+                                                      else 'negative' if x['compound'] < 0 
+                                                      else 'neutral')
+
+# calculate percentage of positive, negative and neutral comments
+sentiment_counts = df['sentiment'].value_counts(normalize=True)
+pos_percent = round(sentiment_counts['positive']*100, 2)
+neg_percent = round(sentiment_counts['negative']*100, 2)
+neu_percent = round(sentiment_counts['neutral']*100, 2)
+
+# print total views, likes, dislikes and comment count
+total_views = df['view_count'].sum()
+total_likes = df['like_count'].sum()
+total_dislikes = df['dislike_count'].sum()
+total_comments = df.shape[0]
+
+print("Total Views:", total_views)
+print("Total Likes:", total_likes)
+print("Total Dislikes:", total_dislikes)
+print("Total Comments:", total_comments)
+
+# print percentage of positive, negative and neutral comments
+print("Percentage of Positive Comments:", pos_percent)
+print("Percentage of Negative Comments:", neg_percent)
+print("Percentage of Neutral Comments:", neu_percent)
