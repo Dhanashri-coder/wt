@@ -1,7 +1,4 @@
-Q1.Write a PHP script to accept username and password. If in the first three chances, username and
-password entered is correct then display second form with “Welcome message” otherwise display error
-message. [Use Session] 
-
+set A
 HTML file :
 
 <html>
@@ -41,6 +38,7 @@ HTML file :
 
 </body>
 </html>
+
 
 HTML file :  error.html
 
