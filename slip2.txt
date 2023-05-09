@@ -1,51 +1,121 @@
-HTML file :
+q1
+page1.php
+<?php
+if(isset($_POST['submit'])) {
+    $font_style = $_POST['font_style'];
+    $font_size = $_POST['font_size'];
+    $font_color = $_POST['font_color'];
+    $bg_color = $_POST['bg_color'];
+    setcookie('font_style', $font_style, time() + (86400 * 30), "/");
+    setcookie('font_size', $font_size, time() + (86400 * 30), "/");
+    setcookie('font_color', $font_color, time() + (86400 * 30), "/");
+    setcookie('bg_color', $bg_color, time() + (86400 * 30), "/");
+    header('Location: page2.php');
+}
+?>
 
+<!DOCTYPE html>
 <html>
+<head>
+    <title>Page 1</title>
+</head>
 <body>
-<form action="slip2_2_1.php" method="get">
-<center>
-<b>Select font style :</b><input type=text name=s1> <br>
-<b>Enter font size : </b><input type=text name=s><br>
-<b>Enter font color : </b><input type=text name=c><br>
-<b>Enter background color :</b> <input type=text name=b><br>
-<input type=submit value="Next">
-</center>
-</form>
+    <form method="post" action="">
+        <label>Font Style:</label>
+        <select name="font_style">
+            <option value="Arial">Arial</option>
+            <option value="Verdana">Verdana</option>
+            <option value="Tahoma">Tahoma</option>
+        </select>
+        <br><br>
+        <label>Font Size:</label>
+        <select name="font_size">
+            <option value="12px">12px</option>
+            <option value="14px">14px</option>
+            <option value="16px">16px</option>
+        </select>
+        <br><br>
+        <label>Font Color:</label>
+        <input type="color" name="font_color">
+        <br><br>
+        <label>Background Color:</label>
+        <input type="color" name="bg_color">
+        <br><br>
+        <input type="submit" name="submit" value="Submit">
+    </form>
 </body>
 </html>
 
-PHP file : slip2_2_1.php
 
+page2.php
 <?php
-echo "style is ".$_GET['s1']."<br>color is ".$_GET['c']."<br>Background color is ".$_GET['b']."<br>size is ".$_GET['s'];
-setcookie("set1",$_GET['s1'],time()+3600);
-setcookie("set2",$_GET['c'],time()+3600);
-setcookie("set3",$_GET['b'],time()+3600);
-setcookie("set4",$_GET['s'],time()+3600);
+if(isset($_COOKIE['font_style']) && isset($_COOKIE['font_size']) && isset($_COOKIE['font_color']) && isset($_COOKIE['bg_color'])) {
+    $font_style = $_COOKIE['font_style'];
+    $font_size = $_COOKIE['font_size'];
+    $font_color = $_COOKIE['font_color'];
+    $bg_color = $_COOKIE['bg_color'];
+}
 ?>
 
+<!DOCTYPE html>
 <html>
+<head>
+    <title>Page 2</title>
+    <style>
+        body {
+            font-family: <?php echo $font_style; ?>;
+            font-size: <?php echo $font_size; ?>;
+            color: <?php echo $font_color; ?>;
+            background-color: <?php echo $bg_color; ?>;
+        }
+    </style>
+</head>
 <body>
-<form action="slip2_2_2.php">
-<input type=submit value=OK>
-</form>
+    <h1>Selected Settings</h1>
+    <p>Font Style: <?php echo $font_style; ?></p>
+    <p>Font Size: <?php echo $font_size; ?></p>
+    <p>Font Color: <?php echo $font_color; ?></p>
+    <p>Background Color: <?php echo $bg_color; ?></p>
+    <a href="page1.php">Go Back</a>
+    <a href="page3.php">Go to Page 3</a>
 </body>
 </html>
 
-PHP file : slip2_2_2.php
+page3.php
 <?php
-$style = $_COOKIE['set1'];
-$color = $_COOKIE['set2'];
-$size = $_COOKIE['set4'];
-$b_color = $_COOKIE['set3'];
-$msg = "NR Classes";
-echo "<body bgcolor=$b_color>";
-echo "<font color=$color size=$size>$msg";
-echo "</font></body>";
+if(isset($_COOKIE['font_style']) && isset($_COOKIE['font_size']) && isset($_COOKIE['font_color']) && isset($_COOKIE['bg_color'])) {
+    $font_style = $_COOKIE['font_style'];
+    $font_size = $_COOKIE['font_size'];
+    $font_color = $_COOKIE['font_color'];
+    $bg_color = $_COOKIE['bg_color'];
+}
 ?>
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page 3</title>
+    <style>
+        body {
+            font-family: <?php echo $font_style; ?>;
+            font-size: <?php echo $font_size; ?>;
+            color: <?php echo $font_color; ?>;
+            background-color: <?php echo $bg_color; ?>;
+        }
+    </style>
+</head>
+<body>
+    <h1>Actual Implementation</h1>
+    <p> Piyush Bhavsar </p>
+    <p> Done and Dusted! </p>
+    
+</body>
+</html>
 
-set B
+
+
+
+q2
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
